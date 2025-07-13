@@ -1,12 +1,5 @@
 # План подготовки к экзамену по польскому языку (уровень B1)
 
-<button onclick="toggleTheme()">Сменить тему</button>
-
-<div id="themeBlock" style="margin-top:10px; padding:10px; background-color:white; color:black; border-radius:5px;">
-
-
-
-
 Этот список охватывает все грамматические, лексические и коммуникативные компетенции, которые проверяются на государственном сертификационном экзамене на уровне B1. К каждому разделу добавлено **рекомендуемое время для изучения и практики** (всего около 180-200 часов).
 
 [Упражнения в anki для проработки скачать](pl-gram.apkg)
@@ -182,14 +175,3 @@ _(~5-6 часов на каждую тему)_
 
 
 Тесты прошлых лет: [2024](https://certyfikatpolski.pl/o-egzaminie/testy-egzaminacyjne-z-poprzednich-lat/)
-
-</div>
-
-<script>
-  function toggleTheme() {
-    const el = document.getElementById("themeBlock");
-    const isDark = el.style.backgroundColor === "black";
-    el.style.backgroundColor = isDark ? "white" : "black";
-    el.style.color = isDark ? "black" : "white";
-  }
-</script>
