@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index.md",
+                "file": "index.js.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "index"
+              "title": "index.js"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "index.md",
+                "file": "index.js.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for index"
+              "title": "Backlinks for index.js"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index.md",
+                "file": "index.js.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from index"
+              "title": "Outgoing links from index.js"
             }
           },
           {
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index.md",
+                "file": "index.js.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of index"
+              "title": "Outline of index.js"
             }
           }
         ]
@@ -170,8 +170,9 @@
   },
   "active": "29e382f66f248654",
   "lastOpenFiles": [
-    "I Грамматика/3. Глаголы/4. Смешанная практика.md",
     "index.md",
+    "index.js.md",
+    "I Грамматика/3. Глаголы/4. Смешанная практика.md",
     "I Грамматика/1. Существительные/Падежи.md",
     "I Грамматика/7. Синтаксис/Синтаксис.md",
     "I Грамматика/6. Числительное/Числительное.md",
@@ -195,7 +196,6 @@
     "I Грамматика/1. Существительное/2. Единственное число/6. Miejscownik.md",
     "I Грамматика/1. Существительное/3. Множественное число/5. Narzędnik.md",
     "I Грамматика/1. Существительное/2. Единственное число/5. Narzędnik.md",
-    "I Грамматика/1. Существительное/3. Множественное число/4. Biernik.md",
     "pl-gram.apkg",
     "pl проработка грамматики.apkg",
     "pl9000.apkg",
