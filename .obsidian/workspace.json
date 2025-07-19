@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index.md",
+                "file": "I Грамматика/3. Глаголы/1. Настоящее время.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "index"
+              "title": "1. Настоящее время"
             }
           }
         ]
@@ -170,8 +170,8 @@
   },
   "active": "29e382f66f248654",
   "lastOpenFiles": [
-    "index.js.md",
     "index.md",
+    "index.js.md",
     "I Грамматика/3. Глаголы/4. Смешанная практика.md",
     "I Грамматика/1. Существительные/Падежи.md",
     "I Грамматика/7. Синтаксис/Синтаксис.md",
