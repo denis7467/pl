@@ -1,235 +1,1209 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Таблица польских падежей</title>
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Таблица польских падежей и сравнения прилагательных</title>
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0px;
+        background-color: #f0f0f0;
+      }
 
-        table {
-            width: 80%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+      h1,
+      h2 {
+        text-align: center;
+        margin-top: 20px;
+      }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
+      h2 {
+        margin-top: 40px;
+      }
 
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
+      .table-container {
+        width: 100%;
+        overflow-x: auto;
+        margin-bottom: 20px;
+      }
 
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        min-width: 600px;
+      }
 
-        td {
-            cursor: pointer;
-        }
-        
-        .hidden-cell {
-            color: transparent;
-            transition: color 0.5s ease-in-out;
-        }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding-bottom: 12px;
+        padding-top: 12px;
+        text-align: left;
+      }
 
-        .visible-cell {
-            color: black;
-            transition: color 0.5s ease-in-out;
-        }
+      th {
+        background-color: #4caf50;
+        color: white;
+      }
 
-        .seen {
-            background-color: #ffeb3b;
-            transition: background-color 0.5s ease-in-out;
-        }
+      tr:nth-child(even) {
+        background-color: #f6f4f4;
+      }
 
-        #reset-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #008CBA;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-bottom: 20px;
-            transition: background-color 0.3s;
-        }
+      td {
+        cursor: pointer;
+      }
 
-        #reset-button:hover {
-            background-color: #005f7a;
-        }
+      /* Скрываем текст в ячейках */
+      .hidden-cell {
+        color: transparent;
+        transition: color 0.5s ease-in-out;
+        /* white-space: nowrap; */
+      }
+
+      /* Показываем текст в ячейках */
+      .visible-cell {
+        color: black;
+        transition: color 0.5s ease-in-out;
+        /* white-space: nowrap; */
+      }
+
+      /* Выделение просмотренной ячейки */
+      .seen {
+        background-color: #dfded5;
+        transition: background-color 0.5s ease-in-out;
+      }
+
+      #reset-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #008cba;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        transition: background-color 0.3s;
+      }
+
+      #reset-button:hover {
+        background-color: #005f7a;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Польские падежи (единственное число)</h1>
     <button id="reset-button">Сбросить</button>
 
-    <table>
+    <div class="table-container">
+      <table>
         <thead>
-            <tr>
-                <th>Падеж (Przypadek)</th>
-                <th>Вопросы (Pytania)</th>
-                <th>Мужской род (Rodzaj męski)</th>
-                <th>Женский род (Rodzaj żeński)</th>
-                <th>Средний род (Rodzaj nijaki)</th>
-            </tr>
+          <tr>
+            <th>Падеж (Przypadek)</th>
+            <th>Вопросы (Pytania)</th>
+            <th>Мужской род (Rodzaj męski)</th>
+            <th>Женский род (Rodzaj żeński)</th>
+            <th>Средний род (Rodzaj nijaki)</th>
+          </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Mianownik (M.)</td>
-                <td>kto? co? (кто? что?)</td>
-                <td>pan (господин)<br>stół (стол)</td>
-                <td>kobieta (женщина)<br>noc (ночь)</td>
-                <td>okno (окно)<br>pole (поле)</td>
-            </tr>
-            <tr>
-                <td>Dopełniacz (D.)</td>
-                <td>kogo? czego? (кого? чего?)</td>
-                <td class="hidden-cell">pana<br>stołu</td>
-                <td class="hidden-cell">kobiety<br>nocy</td>
-                <td class="hidden-cell">okna<br>pola</td>
-            </tr>
-            <tr>
-                <td>Celownik (C.)</td>
-                <td>komu? czemu? (кому? чему?)</td>
-                <td class="hidden-cell">panu<br>stołowi</td>
-                <td class="hidden-cell">kobiecie<br>nocy</td>
-                <td class="hidden-cell">oknu<br>polu</td>
-            </tr>
-            <tr>
-                <td>Biernik (B.)</td>
-                <td>kogo? co? (кого? что?)</td>
-                <td class="hidden-cell">pana (jak D.)<br>stół (jak M.)</td>
-                <td class="hidden-cell">kobietę<br>noc (как M.)</td>
-                <td class="hidden-cell">okno (jak M.)<br>pole (jak M.)</td>
-            </tr>
-            <tr>
-                <td>Narzędnik (N.)</td>
-                <td>kim? czym? (кем? чем?)</td>
-                <td class="hidden-cell">panem<br>stołem</td>
-                <td class="hidden-cell">kobietą<br>nocą</td>
-                <td class="hidden-cell">oknem<br>polem</td>
-            </tr>
-            <tr>
-                <td>Miejscownik (Ms.)</td>
-                <td>o kim? o czym? (о ком? о чём?)</td>
-                <td class="hidden-cell">o panu<br>o stole</td>
-                <td class="hidden-cell">o kobiecie<br>o nocy</td>
-                <td class="hidden-cell">o oknie<br>o polu</td>
-            </tr>
-            <tr>
-                <td>Wołacz (W.)</td>
-                <td>(звательная форма)</td>
-                <td class="hidden-cell">panie!<br>stole!</td>
-                <td class="hidden-cell">kobieto!<br>nocy!</td>
-                <td class="hidden-cell">okno!<br>pole!</td>
-            </tr>
+          <tr>
+            <td>Mianownik (M.)</td>
+            <td class="hidden-cell">kto? co? (кто? что?)</td>
+            <td class="hidden-cell">pan (господин)<br />stół (стол)</td>
+            <td class="hidden-cell">kobieta (женщина)<br />noc (ночь)</td>
+            <td class="hidden-cell">okno (окно)<br />pole (поле)</td>
+          </tr>
+          <tr>
+            <td>Dopełniacz (D.)</td>
+            <td class="hidden-cell">kogo? czego? (кого? чего?)</td>
+            <td class="hidden-cell">pana<br />stołu</td>
+            <td class="hidden-cell">kobiety<br />nocy</td>
+            <td class="hidden-cell">okna<br />pola</td>
+          </tr>
+          <tr>
+            <td>Celownik (C.)</td>
+            <td class="hidden-cell">komu? czemu? (кому? чему?)</td>
+            <td class="hidden-cell">panu<br />stołowi</td>
+            <td class="hidden-cell">kobiecie<br />nocy</td>
+            <td class="hidden-cell">oknu<br />polu</td>
+          </tr>
+          <tr>
+            <td>Biernik (B.)</td>
+            <td class="hidden-cell">kogo? co? (кого? что?)</td>
+            <td class="hidden-cell">pana (jak D.)<br />stół (jak M.)</td>
+            <td class="hidden-cell">kobietę<br />noc (как M.)</td>
+            <td class="hidden-cell">okno (как M.)<br />pole (как M.)</td>
+          </tr>
+          <tr>
+            <td>Narzędnik (N.)</td>
+            <td class="hidden-cell">kim? czym? (кем? чем?)</td>
+            <td class="hidden-cell">panem<br />stołem</td>
+            <td class="hidden-cell">kobiezą<br />nocą</td>
+            <td class="hidden-cell">oknem<br />polem</td>
+          </tr>
+          <tr>
+            <td>Miejscownik (Ms.)</td>
+            <td class="hidden-cell">o kim? o czym? (о ком? о чём?)</td>
+            <td class="hidden-cell">o panu<br />o stole</td>
+            <td class="hidden-cell">o kobiecie<br />o nocy</td>
+            <td class="hidden-cell">o oknie<br />o polu</td>
+          </tr>
+          <tr>
+            <td>Wołacz (W.)</td>
+            <td class="hidden-cell">(звательная форма)</td>
+            <td class="hidden-cell">panie!<br />stole!</td>
+            <td class="hidden-cell">kobieto!<br />nocy!</td>
+            <td class="hidden-cell">okno!<br />pole!</td>
+          </tr>
         </tbody>
-    </table>
-
-    <br><br>
+      </table>
+    </div>
 
     <h1>Польские падежи (множественное число)</h1>
 
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Падеж (Przypadek)</th>
+            <th>Вопросы (Pytania)</th>
+            <th>Мужской род (лично-мужской)</th>
+            <th>Мужской род (нелично-мужской), Женский и Средний род</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mianownik (M.)</td>
+            <td class="hidden-cell">kto? co? (кто? что?)</td>
+            <td class="hidden-cell">panowie<br />studenci</td>
+            <td class="hidden-cell">stoły<br />kobiety<br />okna<br />pola</td>
+          </tr>
+          <tr>
+            <td>Dopełniacz (D.)</td>
+            <td class="hidden-cell">kogo? czego? (кого? чего?)</td>
+            <td class="hidden-cell">panów<br />studentów</td>
+            <td class="hidden-cell">stołów<br />kobiet<br />okien<br />pól</td>
+          </tr>
+          <tr>
+            <td>Celownik (C.)</td>
+            <td class="hidden-cell">komu? czemu? (кому? czemu?)</td>
+            <td class="hidden-cell">panom<br />studentom</td>
+            <td class="hidden-cell">
+              stołom<br />kobietom<br />oknom<br />polom
+            </td>
+          </tr>
+          <tr>
+            <td>Biernik (B.)</td>
+            <td class="hidden-cell">kogo? co? (кого? co?)</td>
+            <td class="hidden-cell">panów (как D.)<br />studentów (как D.)</td>
+            <td class="hidden-cell">
+              stoły (как M.)<br />kobiety (как M.)<br />okna (как M.)<br />pola
+              (как M.)
+            </td>
+          </tr>
+          <tr>
+            <td>Narzędnik (N.)</td>
+            <td class="hidden-cell">kim? czym? (кем? чем?)</td>
+            <td class="hidden-cell">panami<br />studentami</td>
+            <td class="hidden-cell">
+              stołami<br />kobietami<br />oknami<br />polami
+            </td>
+          </tr>
+          <tr>
+            <td>Miejscownik (Ms.)</td>
+            <td class="hidden-cell">o kim? o czym? (о ком? о чём?)</td>
+            <td class="hidden-cell">o panach<br />o studentach</td>
+            <td class="hidden-cell">
+              o stołach<br />o kobietach<br />o oknach<br />o polach
+            </td>
+          </tr>
+          <tr>
+            <td>Wołacz (W.)</td>
+            <td class="hidden-cell">(звательная форма)</td>
+            <td class="hidden-cell">
+              panowie! (как M.)<br />studenci! (как M.)
+            </td>
+            <td class="hidden-cell">
+              stoły! (как M.)<br />kobiety! (как M.)<br />okna! (как M.)<br />pola!
+              (как M.)
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h1>Склонение прилагательных (мужской род)</h1>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Падеж</th>
+            <th>Вопрос</th>
+            <th>Окончание</th>
+            <th>Пример (неодуш.)</th>
+            <th>Пример (одуш.)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>M.</td>
+            <td>jaki?</td>
+            <td>-y / -i</td>
+            <td>nowy samochód</td>
+            <td>dobry student</td>
+          </tr>
+          <tr>
+            <td>D.</td>
+            <td class="hidden-cell">jakiego?</td>
+            <td class="hidden-cell">-ego</td>
+            <td class="hidden-cell">nowego samochodu</td>
+            <td class="hidden-cell">dobrego studenta</td>
+          </tr>
+          <tr>
+            <td>C.</td>
+            <td class="hidden-cell">jakiemu?</td>
+            <td class="hidden-cell">-emu</td>
+            <td class="hidden-cell">nowemu samochodowi</td>
+            <td class="hidden-cell">dobremu studentowi</td>
+          </tr>
+          <tr>
+            <td>B.</td>
+            <td class="hidden-cell">jaki(ego)?</td>
+            <td class="hidden-cell">-y / -i или -ego</td>
+            <td class="hidden-cell">nowy samochód</td>
+            <td class="hidden-cell">dobrego studenta</td>
+          </tr>
+          <tr>
+            <td>N.</td>
+            <td class="hidden-cell">jakim?</td>
+            <td class="hidden-cell">-ym / -im</td>
+            <td class="hidden-cell">nowym samochodem</td>
+            <td class="hidden-cell">dobrym studentem</td>
+          </tr>
+          <tr>
+            <td>Ms.</td>
+            <td class="hidden-cell">o jakim?</td>
+            <td class="hidden-cell">-ym / -im</td>
+            <td class="hidden-cell">o nowym samochodzie</td>
+            <td class="hidden-cell">o dobrym studencie</td>
+          </tr>
+          <tr>
+            <td>W.</td>
+            <td class="hidden-cell">jaki!</td>
+            <td class="hidden-cell">-y / -i</td>
+            <td class="hidden-cell">nowy samochodzie!</td>
+            <td class="hidden-cell">dobry studencie!</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h1>Склонение прилагательных (женский род)</h1>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Падеж</th>
+            <th>Вопрос</th>
+            <th>Окончание</th>
+            <th>Пример</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>M.</td>
+            <td>jaka?</td>
+            <td>-a</td>
+            <td>nowa książka</td>
+          </tr>
+          <tr>
+            <td>D.</td>
+            <td class="hidden-cell">jakiej?</td>
+            <td class="hidden-cell">-ej</td>
+            <td class="hidden-cell">nowej książki</td>
+          </tr>
+          <tr>
+            <td>C.</td>
+            <td class="hidden-cell">jakiej?</td>
+            <td class="hidden-cell">-ej</td>
+            <td class="hidden-cell">nowej książce</td>
+          </tr>
+          <tr>
+            <td>B.</td>
+            <td class="hidden-cell">jaką?</td>
+            <td class="hidden-cell">-ą</td>
+            <td class="hidden-cell">nową książkę</td>
+          </tr>
+          <tr>
+            <td>N.</td>
+            <td class="hidden-cell">jaką?</td>
+            <td class="hidden-cell">-ą</td>
+            <td class="hidden-cell">nową książką</td>
+          </tr>
+          <tr>
+            <td>Ms.</td>
+            <td class="hidden-cell">o jakiej?</td>
+            <td class="hidden-cell">-ej</td>
+            <td class="hidden-cell">o nowej książce</td>
+          </tr>
+          <tr>
+            <td>W.</td>
+            <td class="hidden-cell">jaka!</td>
+            <td class="hidden-cell">-a</td>
+            <td class="hidden-cell">nowa książko!</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h1>Склонение прилагательных (средний род)</h1>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Падеж</th>
+            <th>Вопрос</th>
+            <th>Окончание</th>
+            <th>Пример</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>M.</td>
+            <td>jakie?</td>
+            <td>-e</td>
+            <td>nowe okno</td>
+          </tr>
+          <tr>
+            <td>D.</td>
+            <td class="hidden-cell">jakiego?</td>
+            <td class="hidden-cell">-ego</td>
+            <td class="hidden-cell">nowego okna</td>
+          </tr>
+          <tr>
+            <td>C.</td>
+            <td class="hidden-cell">jakiemu?</td>
+            <td class="hidden-cell">-emu</td>
+            <td class="hidden-cell">nowemu oknu</td>
+          </tr>
+          <tr>
+            <td>B.</td>
+            <td class="hidden-cell">jakie?</td>
+            <td class="hidden-cell">-e</td>
+            <td class="hidden-cell">nowe okno</td>
+          </tr>
+          <tr>
+            <td>N.</td>
+            <td class="hidden-cell">jakim?</td>
+            <td class="hidden-cell">-ym / -im</td>
+            <td class="hidden-cell">nowym oknem</td>
+          </tr>
+          <tr>
+            <td>Ms.</td>
+            <td class="hidden-cell">o jakim?</td>
+            <td class="hidden-cell">-ym / -im</td>
+            <td class="hidden-cell">o nowym oknie</td>
+          </tr>
+          <tr>
+            <td>W.</td>
+            <td class="hidden-cell">jakie!</td>
+            <td class="hidden-cell">-e</td>
+            <td class="hidden-cell">nowe okno!</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h1>Склонение прилагательных (множественное число, лично-мужской род)</h1>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Падеж</th>
+            <th>Вопрос</th>
+            <th>Окончание</th>
+            <th>Пример</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>M.</td>
+            <td>jacy?</td>
+            <td>-y / -i</td>
+            <td>dobrzy studenci</td>
+          </tr>
+          <tr>
+            <td>D.</td>
+            <td class="hidden-cell">jakich?</td>
+            <td class="hidden-cell">-ych / -ich</td>
+            <td class="hidden-cell">dobrych studentów</td>
+          </tr>
+          <tr>
+            <td>C.</td>
+            <td class="hidden-cell">jakim?</td>
+            <td class="hidden-cell">-ym / -im</td>
+            <td class="hidden-cell">dobrym studentom</td>
+          </tr>
+          <tr>
+            <td>B.</td>
+            <td class="hidden-cell">jakich?</td>
+            <td class="hidden-cell">-ych / -ich</td>
+            <td class="hidden-cell">dobrych studentów</td>
+          </tr>
+          <tr>
+            <td>N.</td>
+            <td class="hidden-cell">jakimi?</td>
+            <td class="hidden-cell">-ymi / -imi</td>
+            <td class="hidden-cell">dobrymi studentami</td>
+          </tr>
+          <tr>
+            <td>Ms.</td>
+            <td class="hidden-cell">o jakich?</td>
+            <td class="hidden-cell">-ych / -ich</td>
+            <td class="hidden-cell">o dobrych studentach</td>
+          </tr>
+          <tr>
+            <td>W.</td>
+            <td class="hidden-cell">jacy!</td>
+            <td class="hidden-cell">-y / -i</td>
+            <td class="hidden-cell">dobrzy studenci!</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h1>
+      Склонение прилагательных (множественное число, нелично-мужской, женский и
+      средний род)
+    </h1>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Падеж</th>
+            <th>Вопрос</th>
+            <th>Окончание</th>
+            <th>Пример</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>M.</td>
+            <td>jakie?</td>
+            <td>-e</td>
+            <td>nowe książki</td>
+          </tr>
+          <tr>
+            <td>D.</td>
+            <td class="hidden-cell">jakich?</td>
+            <td class="hidden-cell">-ych / -ich</td>
+            <td class="hidden-cell">nowych książek</td>
+          </tr>
+          <tr>
+            <td>C.</td>
+            <td class="hidden-cell">jakim?</td>
+            <td class="hidden-cell">-ym / -im</td>
+            <td class="hidden-cell">nowym książkom</td>
+          </tr>
+          <tr>
+            <td>B.</td>
+            <td class="hidden-cell">jakie?</td>
+            <td class="hidden-cell">-e</td>
+            <td class="hidden-cell">nowe książki</td>
+          </tr>
+          <tr>
+            <td>N.</td>
+            <td class="hidden-cell">jakimi?</td>
+            <td class="hidden-cell">-ymi / -imi</td>
+            <td class="hidden-cell">nowymi książkami</td>
+          </tr>
+          <tr>
+            <td>Ms.</td>
+            <td class="hidden-cell">o jakich?</td>
+            <td class="hidden-cell">-ych / -ich</td>
+            <td class="hidden-cell">o nowych książkach</td>
+          </tr>
+          <tr>
+            <td>W.</td>
+            <td class="hidden-cell">jakie!</td>
+            <td class="hidden-cell">-e</td>
+            <td class="hidden-cell">nowe książki!</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h1>Сравнение прилагательных</h1>
+
+    <div class="table-container">
+      <h2>Регулярное сравнение</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Положительная</th>
+            <th>Сравнительная (-szy / -ejszy)</th>
+            <th>Превосходная (naj-)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>nowy</td>
+            <td class="hidden-cell">nowszy</td>
+            <td class="hidden-cell">najnowszy</td>
+          </tr>
+          <tr>
+            <td>stary</td>
+            <td class="hidden-cell">starszy</td>
+            <td class="hidden-cell">najstarszy</td>
+          </tr>
+          <tr>
+            <td>miły</td>
+            <td class="hidden-cell">milszy</td>
+            <td class="hidden-cell">najmilszy</td>
+          </tr>
+          <tr>
+            <td>tani</td>
+            <td class="hidden-cell">tańszy</td>
+            <td class="hidden-cell">najtańszy</td>
+          </tr>
+          <tr>
+            <td>ciepły</td>
+            <td class="hidden-cell">cieplejszy</td>
+            <td class="hidden-cell">najcieplejszy</td>
+          </tr>
+          <tr>
+            <td>mądry</td>
+            <td class="hidden-cell">mądrzejszy</td>
+            <td class="hidden-cell">najmądrzejszy</td>
+          </tr>
+          <tr>
+            <td>łatwy</td>
+            <td class="hidden-cell">łatwiejszy</td>
+            <td class="hidden-cell">najłatwiejszy</td>
+          </tr>
+          <tr>
+            <td>spokojny</td>
+            <td class="hidden-cell">spokojniejszy</td>
+            <td class="hidden-cell">najspokojniejszy</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Нерегулярное сравнение</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Положительная</th>
+            <th>Сравнительная</th>
+            <th>Превосходная</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>dobry</td>
+            <td class="hidden-cell">lepszy</td>
+            <td class="hidden-cell">najlepszy</td>
+          </tr>
+          <tr>
+            <td>zły</td>
+            <td class="hidden-cell">gorszy</td>
+            <td class="hidden-cell">najgorszy</td>
+          </tr>
+          <tr>
+            <td>duży / wielki</td>
+            <td class="hidden-cell">większy</td>
+            <td class="hidden-cell">największy</td>
+          </tr>
+          <tr>
+            <td>mały</td>
+            <td class="hidden-cell">mniejszy</td>
+            <td class="hidden-cell">najmniejszy</td>
+          </tr>
+          <tr>
+            <td>lekki</td>
+            <td class="hidden-cell">lżejszy</td>
+            <td class="hidden-cell">najlżejszy</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Описательное сравнение</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Сравнительная (bardziej + прилагательное)</th>
+            <th>Превосходная (najbardziej + прилагательное)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="hidden-cell">bardziej interesujący</td>
+            <td class="hidden-cell">najbardziej interesujący</td>
+          </tr>
+          <tr>
+            <td class="hidden-cell">bardziej skomplikowany</td>
+            <td class="hidden-cell">najbardziej skomplikowany</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h1>Таблица спряжения (I конъюгация)</h1>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Лицо</th>
+            <th>Окончание</th>
+            <th>pisać (писать)</th>
+            <th>pracować (работать)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ja</td>
+            <td>-ę</td>
+            <td class="hidden-cell">piszę</td>
+            <td class="hidden-cell">pracuję</td>
+          </tr>
+          <tr>
+            <td>ty</td>
+            <td class="hidden-cell">-esz</td>
+            <td class="hidden-cell">piszesz</td>
+            <td class="hidden-cell">pracujesz</td>
+          </tr>
+          <tr>
+            <td>on, ona, ono</td>
+            <td class="hidden-cell">-e</td>
+            <td class="hidden-cell">pisze</td>
+            <td class="hidden-cell">pracuje</td>
+          </tr>
+          <tr>
+            <td>my</td>
+            <td class="hidden-cell">-emy</td>
+            <td class="hidden-cell">piszemy</td>
+            <td class="hidden-cell">pracujemy</td>
+          </tr>
+          <tr>
+            <td>wy</td>
+            <td class="hidden-cell">-ecie</td>
+            <td class="hidden-cell">piszecie</td>
+            <td class="hidden-cell">pracujecie</td>
+          </tr>
+          <tr>
+            <td>oni, one</td>
+            <td class="hidden-cell">-ą</td>
+            <td class="hidden-cell">piszą</td>
+            <td class="hidden-cell">pracują</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h1>Таблица спряжения (II конъюгация)</h1>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Лицо</th>
+            <th>Окончание</th>
+            <th>mówić (говорить)</th>
+            <th>uczyć się (учиться)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ja</td>
+            <td>-ę</td>
+            <td class="hidden-cell">mówię</td>
+            <td class="hidden-cell">uczę się</td>
+          </tr>
+          <tr>
+            <td>ty</td>
+            <td class="hidden-cell">-isz / -ysz</td>
+            <td class="hidden-cell">mówisz</td>
+            <td class="hidden-cell">uczysz się</td>
+          </tr>
+          <tr>
+            <td>on, ona, ono</td>
+            <td class="hidden-cell">-i / -y</td>
+            <td class="hidden-cell">mówi</td>
+            <td class="hidden-cell">uczy się</td>
+          </tr>
+          <tr>
+            <td>my</td>
+            <td class="hidden-cell">-imy / -ymy</td>
+            <td class="hidden-cell">mówimy</td>
+            <td class="hidden-cell">uczymy się</td>
+          </tr>
+          <tr>
+            <td>wy</td>
+            <td class="hidden-cell">-icie / -ycie</td>
+            <td class="hidden-cell">mówicie</td>
+            <td class="hidden-cell">uczycie się</td>
+          </tr>
+          <tr>
+            <td>oni, one</td>
+            <td class="hidden-cell">-ą</td>
+            <td class="hidden-cell">mówią</td>
+            <td class="hidden-cell">uczą się</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h1>Таблица спряжения (III конъюгация)</h1>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Лицо</th>
+            <th>Окончание</th>
+            <th>mieć (иметь)</th>
+            <th>rozumieć (понимать)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ja</td>
+            <td class="hidden-cell">-m</td>
+            <td class="hidden-cell">mam</td>
+            <td class="hidden-cell">rozumiem</td>
+          </tr>
+          <tr>
+            <td>ty</td>
+            <td class="hidden-cell">-sz</td>
+            <td class="hidden-cell">masz</td>
+            <td class="hidden-cell">rozumiesz</td>
+          </tr>
+          <tr>
+            <td>on, ona, ono</td>
+            <td class="hidden-cell">(нет)</td>
+            <td class="hidden-cell">ma</td>
+            <td class="hidden-cell">rozumie</td>
+          </tr>
+          <tr>
+            <td>my</td>
+            <td class="hidden-cell">-my</td>
+            <td class="hidden-cell">mamy</td>
+            <td class="hidden-cell">rozumiemy</td>
+          </tr>
+          <tr>
+            <td>wy</td>
+            <td class="hidden-cell">-cie</td>
+            <td class="hidden-cell">macie</td>
+            <td class="hidden-cell">rozumiecie</td>
+          </tr>
+          <tr>
+            <td>oni, one</td>
+            <td class="hidden-cell">-ją</td>
+            <td class="hidden-cell">mają</td>
+            <td class="hidden-cell">rozumieją</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h1>Прошедшее время (единственное число)</h1>
+    <div class="table-container">
+      <h2>Единственное число (Liczba pojedyncza)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Лицо и род</th>
+            <th>Окончание</th>
+            <th>Пример (robić)</th>
+            <th>Перевод</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ja (м.р.)</td>
+            <td class="hidden-cell">-łem</td>
+            <td class="hidden-cell">robiłem</td>
+            <td class="hidden-cell">я делал</td>
+          </tr>
+          <tr>
+            <td>ja (ж.р.)</td>
+            <td class="hidden-cell">-łam</td>
+            <td class="hidden-cell">robiłam</td>
+            <td class="hidden-cell">я делала</td>
+          </tr>
+          <tr>
+            <td>ty (м.р.)</td>
+            <td class="hidden-cell">-łeś</td>
+            <td class="hidden-cell">robiłeś</td>
+            <td class="hidden-cell">ты делал</td>
+          </tr>
+          <tr>
+            <td>ty (ж.р.)</td>
+            <td class="hidden-cell">-łaś</td>
+            <td class="hidden-cell">robiłaś</td>
+            <td class="hidden-cell">ты делала</td>
+          </tr>
+          <tr>
+            <td>on (м.р.)</td>
+            <td class="hidden-cell">-ł</td>
+            <td class="hidden-cell">robił</td>
+            <td class="hidden-cell">он делал</td>
+          </tr>
+          <tr>
+            <td>ona (ж.р.)</td>
+            <td class="hidden-cell">-ła</td>
+            <td class="hidden-cell">robiła</td>
+            <td class="hidden-cell">она делала</td>
+          </tr>
+          <tr>
+            <td>ono (ср.р.)</td>
+            <td class="hidden-cell">-ło</td>
+            <td class="hidden-cell">robiło</td>
+            <td class="hidden-cell">оно делало</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h1>Прошедшее время (множественное число)</h1>
+    <div class="table-container">
+      <h2>Множественное число (Liczba mnoga)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Лицо и род</th>
+            <th>Окончание</th>
+            <th>Пример (robić)</th>
+            <th>Перевод</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>my (лично-муж.)</td>
+            <td class="hidden-cell">-liśmy</td>
+            <td class="hidden-cell">robiliśmy</td>
+            <td class="hidden-cell">мы делали</td>
+          </tr>
+          <tr>
+            <td>my (нелично-муж.)</td>
+            <td class="hidden-cell">-łyśmy</td>
+            <td class="hidden-cell">robiłyśmy</td>
+            <td class="hidden-cell">мы (женщины) делали</td>
+          </tr>
+          <tr>
+            <td>wy (лично-муж.)</td>
+            <td class="hidden-cell">-liście</td>
+            <td class="hidden-cell">robiliście</td>
+            <td class="hidden-cell">вы делали</td>
+          </tr>
+          <tr>
+            <td>wy (нелично-муж.)</td>
+            <td class="hidden-cell">-łyście</td>
+            <td class="hidden-cell">robiłyście</td>
+            <td class="hidden-cell">вы (женщины) делали</td>
+          </tr>
+          <tr>
+            <td>oni (лично-муж.)</td>
+            <td class="hidden-cell">-li</td>
+            <td class="hidden-cell">robili</td>
+            <td class="hidden-cell">они делали</td>
+          </tr>
+          <tr>
+            <td>one (нелично-муж.)</td>
+            <td class="hidden-cell">-ły</td>
+            <td class="hidden-cell">robiły</td>
+            <td class="hidden-cell">они (женщины, дети, предметы) делали</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h1>Условное наклонение (Tryb przypuszczający)</h1>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Лицо и род</th>
+            <th>Частица</th>
+            <th>Пример (zrobić)</th>
+            <th>Перевод</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ja (м.р. / ж.р.)</td>
+            <td class="hidden-cell">-bym</td>
+            <td class="hidden-cell">zrobiłbym / zrobiłabym</td>
+            <td class="hidden-cell">я бы сделал / я бы сделала</td>
+          </tr>
+          <tr>
+            <td>ty (м.р. / ж.р.)</td>
+            <td class="hidden-cell">-byś</td>
+            <td class="hidden-cell">zrobiłbyś / zrobiłabyś</td>
+            <td class="hidden-cell">ты бы сделал / ты бы сделала</td>
+          </tr>
+          <tr>
+            <td>on / ona / ono</td>
+            <td class="hidden-cell">-by</td>
+            <td class="hidden-cell">zrobiłby / zrobiłaby / zrobiłoby</td>
+            <td class="hidden-cell">
+              он бы сделал / она бы сделала / оно бы сделало
+            </td>
+          </tr>
+          <tr>
+            <td>my (лично-муж. / нелично-муж.)</td>
+            <td class="hidden-cell">-byśmy</td>
+            <td class="hidden-cell">zrobilibyśmy / zrobiłybyśmy</td>
+            <td class="hidden-cell">мы бы сделали</td>
+          </tr>
+          <tr>
+            <td>wy (лично-муж. / нелично-муж.)</td>
+            <td class="hidden-cell">-byście</td>
+            <td class="hidden-cell">zrobilibyście / zrobiłybyście</td>
+            <td class="hidden-cell">вы бы сделали</td>
+          </tr>
+          <tr>
+            <td>oni / one</td>
+            <td class="hidden-cell">-by</td>
+            <td class="hidden-cell">zrobiliby / zrobiłyby</td>
+            <td class="hidden-cell">они бы сделали</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h1>Совершенный и несовершенный вид глаголов</h1>
+
+<div class="table-container">
     <table>
         <thead>
             <tr>
-                <th>Падеж (Przypadek)</th>
-                <th>Вопросы (Pytania)</th>
-                <th>Мужской род (лично-мужской)</th>
-                <th>Мужской род (нелично-мужской), Женский и Средний род</th>
+                <th>Совершенный вид<br>(однократное, завершенное действие)</th>
+                <th>Несовершенный вид<br>(повторяющееся действие)</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Mianownik (M.)</td>
-                <td>kto? co? (кто? что?)</td>
-                <td>panowie<br>studenci</td>
-                <td>stoły<br>kobiety<br>okna<br>pola</td>
+                <td class="hidden-cell">pójść (пойти)</td>
+                <td class="hidden-cell">iść / chodzić</td>
             </tr>
             <tr>
-                <td>Dopełniacz (D.)</td>
-                <td>kogo? czego? (кого? чего?)</td>
-                <td class="hidden-cell">panów<br>studentów</td>
-                <td class="hidden-cell">stołów<br>kobiet<br>okien<br>pól</td>
+                <td class="hidden-cell">przyjść (прийти)</td>
+                <td class="hidden-cell">przychodzić</td>
             </tr>
             <tr>
-                <td>Celownik (C.)</td>
-                <td>komu? czemu? (кому? чему?)</td>
-                <td class="hidden-cell">panom<br>studentom</td>
-                <td class="hidden-cell">stołom<br>kobietom<br>oknom<br>polom</td>
+                <td class="hidden-cell">wyjść (выйти)</td>
+                <td class="hidden-cell">wychodzić</td>
             </tr>
             <tr>
-                <td>Biernik (B.)</td>
-                <td>kogo? co? (кого? что?)</td>
-                <td class="hidden-cell">panów (jak D.)<br>studentów (jak D.)</td>
-                <td class="hidden-cell">stoły (как M.)<br>kobiety (как M.)<br>okna (как M.)<br>pola (как M.)</td>
+                <td class="hidden-cell">dojść (дойти)</td>
+                <td class="hidden-cell">dochodzić</td>
             </tr>
             <tr>
-                <td>Narzędnik (N.)</td>
-                <td>kim? czym? (кем? чем?)</td>
-                <td class="hidden-cell">panami<br>studentami</td>
-                <td class="hidden-cell">stołami<br>kobietami<br>oknami<br>polami</td>
+                <td class="hidden-cell">pojechać (поехать)</td>
+                <td class="hidden-cell">jechać / jeździć</td>
             </tr>
             <tr>
-                <td>Miejscownik (Ms.)</td>
-                <td>o kim? o czym? (о ком? о чём?)</td>
-                <td class="hidden-cell">o panach<br>o studentach</td>
-                <td class="hidden-cell">o stołach<br>o kobietach<br>o oknach<br>o polach</td>
+                <td class="hidden-cell">przyjechać (приехать)</td>
+                <td class="hidden-cell">przyjeżdżać</td>
             </tr>
             <tr>
-                <td>Wołacz (W.)</td>
-                <td>(звательная форма)</td>
-                <td class="hidden-cell">panowie! (как M.)<br>studenci! (как M.)</td>
-                <td class="hidden-cell">stoły! (как M.)<br>kobiety! (как M.)<br>okna! (как M.)<br>pola! (как M.)</td>
+                <td class="hidden-cell">wyjechać (уехать)</td>
+                <td class="hidden-cell">wyjeżdżać</td>
+            </tr>
+            <tr>
+                <td class="hidden-cell">dojechać (доехать)</td>
+                <td class="hidden-cell">dojeżdżać</td>
             </tr>
         </tbody>
     </table>
+</div>
+
+<h1>Склонение личных местоимений</h1>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Падеж</th>
+                <th>ja (я)</th>
+                <th>ty (ты)</th>
+                <th>on/ono (он/оно)</th>
+                <th>ona (она)</th>
+                <th>my (мы)</th>
+                <th>wy (вы)</th>
+                <th>oni/one (они)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>M.</td>
+                <td>ja</td>
+                <td>ty</td>
+                <td>on / ono</td>
+                <td>ona</td>
+                <td>my</td>
+                <td>wy</td>
+                <td>oni / one</td>
+            </tr>
+            <tr>
+                <td>D.</td>
+                <td class="hidden-cell">mnie</td>
+                <td class="hidden-cell">ciebie, cię</td>
+                <td class="hidden-cell">jego, go, niego</td>
+                <td class="hidden-cell">jej, niej</td>
+                <td class="hidden-cell">nas</td>
+                <td class="hidden-cell">was</td>
+                <td class="hidden-cell">ich, nich</td>
+            </tr>
+            <tr>
+                <td>C.</td>
+                <td class="hidden-cell">mnie, mi</td>
+                <td class="hidden-cell">tobie, ci</td>
+                <td class="hidden-cell">jemu, mu, niemu</td>
+                <td class="hidden-cell">jej, niej</td>
+                <td class="hidden-cell">nam</td>
+                <td class="hidden-cell">wam</td>
+                <td class="hidden-cell">im, nim</td>
+            </tr>
+            <tr>
+                <td>B.</td>
+                <td class="hidden-cell">mnie, mię</td>
+                <td class="hidden-cell">ciebie, cię</td>
+                <td class="hidden-cell">jego, go, niego</td>
+                <td class="hidden-cell">ją, nią</td>
+                <td class="hidden-cell">nas</td>
+                <td class="hidden-cell">was</td>
+                <td class="hidden-cell">ich, nich</td>
+            </tr>
+            <tr>
+                <td>N.</td>
+                <td class="hidden-cell">mną</td>
+                <td class="hidden-cell">tobą</td>
+                <td class="hidden-cell">nim</td>
+                <td class="hidden-cell">nią</td>
+                <td class="hidden-cell">nami</td>
+                <td class="hidden-cell">wami</td>
+                <td class="hidden-cell">nimi</td>
+            </tr>
+            <tr>
+                <td>Ms.</td>
+                <td class="hidden-cell">o mnie</td>
+                <td class="hidden-cell">o tobie</td>
+                <td class="hidden-cell">o nim</td>
+                <td class="hidden-cell">o niej</td>
+                <td class="hidden-cell">o nas</td>
+                <td class="hidden-cell">o was</td>
+                <td class="hidden-cell">o nich</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h1>Склонение существительных с числительными</h1>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Падеж</th>
+                <th>1</th>
+                <th>2, 3, 4</th>
+                <th>5-21...</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Mianownik</td>
+                <td>jeden stół</td>
+                <td>dwa stoły</td>
+                <td>pięć stołów</td>
+            </tr>
+            <tr>
+                <td>Dopełniacz</td>
+                <td class="hidden-cell">jednego stołu</td>
+                <td class="hidden-cell">dwóch stołów</td>
+                <td class="hidden-cell">pięciu stołów</td>
+            </tr>
+            <tr>
+                <td>Celownik</td>
+                <td class="hidden-cell">jednemu stołowi</td>
+                <td class="hidden-cell">dwóm stołom</td>
+                <td class="hidden-cell">pięciu stołom</td>
+            </tr>
+            <tr>
+                <td>Biernik</td>
+                <td class="hidden-cell">jeden stół</td>
+                <td class="hidden-cell">dwa stoły</td>
+                <td class="hidden-cell">pięć stołów</td>
+            </tr>
+            <tr>
+                <td>Narzędnik</td>
+                <td class="hidden-cell">jednym stołem</td>
+                <td class="hidden-cell">dwoma stołami</td>
+                <td class="hidden-cell">pięcioma stołami</td>
+            </tr>
+            <tr>
+                <td>Miejscownik</td>
+                <td class="hidden-cell">o jednym stole</td>
+                <td class="hidden-cell">o dwóch stołach</td>
+                <td class="hidden-cell">o pięciu stołach</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const hiddenCells = document.querySelectorAll('td.hidden-cell');
-            const resetButton = document.getElementById('reset-button');
-            
-            hiddenCells.forEach(cell => {
-                cell.addEventListener('click', () => {
-                    // Если ячейка уже видна, ничего не делаем
-                    if (cell.classList.contains('visible-cell')) {
-                        return;
-                    }
+      document.addEventListener("DOMContentLoaded", () => {
+        // JavaScript для всех скрытых ячеек
+        const hiddenCells = document.querySelectorAll("td.hidden-cell");
+        const resetButton = document.getElementById("reset-button");
 
-                    // Показываем текст и помечаем ячейку как просмотренную
-                    cell.classList.add('visible-cell');
-                    cell.classList.add('seen');
+        hiddenCells.forEach((cell) => {
+          cell.addEventListener("click", () => {
+            if (cell.classList.contains("visible-cell")) {
+              return;
+            }
 
-                    // Скрываем текст через 2 секунды
-                    setTimeout(() => {
-                        cell.classList.remove('visible-cell');
-                    }, 2000);
-                });
-            });
+            cell.classList.add("visible-cell");
+            cell.classList.add("seen");
 
-            // Обработчик для кнопки сброса
-            resetButton.addEventListener('click', () => {
-                const seenCells = document.querySelectorAll('.seen');
-                seenCells.forEach(cell => {
-                    cell.classList.remove('seen');
-                });
-            });
+            setTimeout(() => {
+              cell.classList.remove("visible-cell");
+            }, 2500);
+          });
         });
+
+        resetButton.addEventListener("click", () => {
+          const seenCells = document.querySelectorAll(".seen");
+          seenCells.forEach((cell) => {
+            cell.classList.remove("seen");
+          });
+        });
+
+        // Открываем все строки "Mianownik" по умолчанию
+        // Проходим по всем таблицам
+        document.querySelectorAll("table").forEach((table) => {
+          const firstRow = table.querySelector("tbody tr:first-child");
+          if (firstRow) {
+            firstRow.querySelectorAll("td").forEach((cell) => {
+              cell.classList.remove("hidden-cell");
+              cell.classList.remove("visible-cell");
+            });
+          }
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
