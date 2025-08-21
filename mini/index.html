@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Таблица со скрытым текстом</title>
+    <title>Таблица польских падежей</title>
     
     <style>
         body {
@@ -40,19 +40,19 @@
         td {
             cursor: pointer;
         }
-
-        .hidden {
+        
+        .hidden-cell {
             color: transparent;
             transition: color 0.5s ease-in-out;
         }
 
-        .visible {
+        .visible-cell {
             color: black;
             transition: color 0.5s ease-in-out;
         }
 
         .seen {
-            background-color: #ffeb3b; /* Цвет для просмотренной ячейки */
+            background-color: #ffeb3b;
             transition: background-color 0.5s ease-in-out;
         }
 
@@ -74,78 +74,150 @@
     </style>
 </head>
 <body>
-    <h1>Таблица с загадками</h1>
+    <h1>Польские падежи (единственное число)</h1>
     <button id="reset-button">Сбросить</button>
+
     <table>
         <thead>
             <tr>
-                <th>Вопрос</th>
-                <th>Ответ</th>
+                <th>Падеж (Przypadek)</th>
+                <th>Вопросы (Pytania)</th>
+                <th>Мужской род (Rodzaj męski)</th>
+                <th>Женский род (Rodzaj żeński)</th>
+                <th>Средний род (Rodzaj nijaki)</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Что всегда растет, но никогда не уменьшается?</td>
-                <td class="hidden">Возраст</td>
+                <td>Mianownik (M.)</td>
+                <td>kto? co? (кто? что?)</td>
+                <td>pan (господин)<br>stół (стол)</td>
+                <td>kobieta (женщина)<br>noc (ночь)</td>
+                <td>okno (окно)<br>pole (поле)</td>
             </tr>
             <tr>
-                <td>У меня есть города, но нет домов, горы, но нет деревьев, и вода, но нет рыбы. Что я?</td>
-                <td class="hidden">Карта</td>
+                <td>Dopełniacz (D.)</td>
+                <td>kogo? czego? (кого? чего?)</td>
+                <td class="hidden-cell">pana<br>stołu</td>
+                <td class="hidden-cell">kobiety<br>nocy</td>
+                <td class="hidden-cell">okna<br>pola</td>
             </tr>
             <tr>
-                <td>Чем больше ты берешь, тем больше остается позади. Что это?</td>
-                <td class="hidden">Шаги</td>
+                <td>Celownik (C.)</td>
+                <td>komu? czemu? (кому? чему?)</td>
+                <td class="hidden-cell">panu<br>stołowi</td>
+                <td class="hidden-cell">kobiecie<br>nocy</td>
+                <td class="hidden-cell">oknu<br>polu</td>
             </tr>
             <tr>
-                <td>Что всегда приходит, но никогда не приходит?</td>
-                <td class="hidden">Завтра</td>
+                <td>Biernik (B.)</td>
+                <td>kogo? co? (кого? что?)</td>
+                <td class="hidden-cell">pana (jak D.)<br>stół (jak M.)</td>
+                <td class="hidden-cell">kobietę<br>noc (как M.)</td>
+                <td class="hidden-cell">okno (jak M.)<br>pole (jak M.)</td>
             </tr>
             <tr>
-                <td>Что всегда мокрое, когда высыхает?</td>
-                <td class="hidden">Полотенце</td>
+                <td>Narzędnik (N.)</td>
+                <td>kim? czym? (кем? чем?)</td>
+                <td class="hidden-cell">panem<br>stołem</td>
+                <td class="hidden-cell">kobietą<br>nocą</td>
+                <td class="hidden-cell">oknem<br>polem</td>
             </tr>
             <tr>
-                <td>Я могу быть сломан, не будучи тронутым. Что я?</td>
-                <td class="hidden">Обещание</td>
+                <td>Miejscownik (Ms.)</td>
+                <td>o kim? o czym? (о ком? о чём?)</td>
+                <td class="hidden-cell">o panu<br>o stole</td>
+                <td class="hidden-cell">o kobiecie<br>o nocy</td>
+                <td class="hidden-cell">o oknie<br>o polu</td>
             </tr>
             <tr>
-                <td>Я высокий, когда я молод, и короткий, когда я стар. Что я?</td>
-                <td class="hidden">Свеча</td>
+                <td>Wołacz (W.)</td>
+                <td>(звательная форма)</td>
+                <td class="hidden-cell">panie!<br>stole!</td>
+                <td class="hidden-cell">kobieto!<br>nocy!</td>
+                <td class="hidden-cell">okno!<br>pole!</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br><br>
+
+    <h1>Польские падежи (множественное число)</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Падеж (Przypadek)</th>
+                <th>Вопросы (Pytania)</th>
+                <th>Мужской род (лично-мужской)</th>
+                <th>Мужской род (нелично-мужской), Женский и Средний род</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Mianownik (M.)</td>
+                <td>kto? co? (кто? что?)</td>
+                <td>panowie<br>studenci</td>
+                <td>stoły<br>kobiety<br>okna<br>pola</td>
             </tr>
             <tr>
-                <td>Я могу говорить на всех языках, но у меня нет голоса. Что я?</td>
-                <td class="hidden">Эхо</td>
+                <td>Dopełniacz (D.)</td>
+                <td>kogo? czego? (кого? чего?)</td>
+                <td class="hidden-cell">panów<br>studentów</td>
+                <td class="hidden-cell">stołów<br>kobiet<br>okien<br>pól</td>
             </tr>
             <tr>
-                <td>У меня есть шея, но нет головы. Что я?</td>
-                <td class="hidden">Бутылка</td>
+                <td>Celownik (C.)</td>
+                <td>komu? czemu? (кому? чему?)</td>
+                <td class="hidden-cell">panom<br>studentom</td>
+                <td class="hidden-cell">stołom<br>kobietom<br>oknom<br>polom</td>
             </tr>
             <tr>
-                <td>Что можно поймать, но нельзя бросить?</td>
-                <td class="hidden">Простуда</td>
+                <td>Biernik (B.)</td>
+                <td>kogo? co? (кого? что?)</td>
+                <td class="hidden-cell">panów (jak D.)<br>studentów (jak D.)</td>
+                <td class="hidden-cell">stoły (как M.)<br>kobiety (как M.)<br>okna (как M.)<br>pola (как M.)</td>
+            </tr>
+            <tr>
+                <td>Narzędnik (N.)</td>
+                <td>kim? czym? (кем? чем?)</td>
+                <td class="hidden-cell">panami<br>studentami</td>
+                <td class="hidden-cell">stołami<br>kobietami<br>oknami<br>polami</td>
+            </tr>
+            <tr>
+                <td>Miejscownik (Ms.)</td>
+                <td>o kim? o czym? (о ком? о чём?)</td>
+                <td class="hidden-cell">o panach<br>o studentach</td>
+                <td class="hidden-cell">o stołach<br>o kobietach<br>o oknach<br>o polach</td>
+            </tr>
+            <tr>
+                <td>Wołacz (W.)</td>
+                <td>(звательная форма)</td>
+                <td class="hidden-cell">panowie! (как M.)<br>studenci! (как M.)</td>
+                <td class="hidden-cell">stoły! (как M.)<br>kobiety! (как M.)<br>okna! (как M.)<br>pola! (как M.)</td>
             </tr>
         </tbody>
     </table>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const tableCells = document.querySelectorAll('td:nth-child(2)');
+            const hiddenCells = document.querySelectorAll('td.hidden-cell');
             const resetButton = document.getElementById('reset-button');
-
-            tableCells.forEach(cell => {
+            
+            hiddenCells.forEach(cell => {
                 cell.addEventListener('click', () => {
-                    // Если текст уже виден, ничего не делаем
-                    if (cell.classList.contains('visible')) {
+                    // Если ячейка уже видна, ничего не делаем
+                    if (cell.classList.contains('visible-cell')) {
                         return;
                     }
 
                     // Показываем текст и помечаем ячейку как просмотренную
-                    cell.classList.add('visible');
+                    cell.classList.add('visible-cell');
                     cell.classList.add('seen');
 
                     // Скрываем текст через 2 секунды
                     setTimeout(() => {
-                        cell.classList.remove('visible');
+                        cell.classList.remove('visible-cell');
                     }, 2000);
                 });
             });
