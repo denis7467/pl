@@ -12,6 +12,7 @@
         flex-direction: column;
         align-items: center;
         padding: 0px;
+                    margin: 0;
         background-color: #f0f0f0;
       }
 
@@ -27,8 +28,10 @@
 
       .table-container {
         width: 100%;
+        max-width: 1000px; /* Ограничиваем максимальную ширину контейнера */
         overflow-x: auto;
         margin-bottom: 20px;
+        /* margin: 0 auto; Центрируем контейнер на странице */
       }
 
       table {
@@ -638,27 +641,6 @@
           </tr>
         </tbody>
       </table>
-
-      <h2>Описательное сравнение</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Сравнительная (bardziej + прилагательное)</th>
-            <th>Превосходная (najbardziej + прилагательное)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="hidden-cell">bardziej interesujący</td>
-            <td class="hidden-cell">najbardziej interesujący</td>
-          </tr>
-          <tr>
-            <td class="hidden-cell">bardziej skomplikowany</td>
-            <td class="hidden-cell">najbardziej skomplikowany</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
 
     <h1>Таблица спряжения (I конъюгация)</h1>
     <div class="table-container">
