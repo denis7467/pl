@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таблица со скрытым текстом</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        td {
+            cursor: pointer;
+        }
+
+        .hidden {
+            color: transparent;
+            transition: color 0.5s ease-in-out;
+        }
+
+        .visible {
+            color: black;
+            transition: color 0.5s ease-in-out;
+        }
+
+        .seen {
+            background-color: #ffeb3b; /* Цвет для просмотренной ячейки */
+            transition: background-color 0.5s ease-in-out;
+        }
+
+        #reset-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        #reset-button:hover {
+            background-color: #005f7a;
+        }
+    </style>
+</head>
+<body>
+    <h1>Таблица с загадками</h1>
+    <button id="reset-button">Сбросить</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Вопрос</th>
+                <th>Ответ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Что всегда растет, но никогда не уменьшается?</td>
+                <td class="hidden">Возраст</td>
+            </tr>
+            <tr>
+                <td>У меня есть города, но нет домов, горы, но нет деревьев, и вода, но нет рыбы. Что я?</td>
+                <td class="hidden">Карта</td>
+            </tr>
+            <tr>
+                <td>Чем больше ты берешь, тем больше остается позади. Что это?</td>
+                <td class="hidden">Шаги</td>
+            </tr>
+            <tr>
+                <td>Что всегда приходит, но никогда не приходит?</td>
+                <td class="hidden">Завтра</td>
+            </tr>
+            <tr>
+                <td>Что всегда мокрое, когда высыхает?</td>
+                <td class="hidden">Полотенце</td>
+            </tr>
+            <tr>
+                <td>Я могу быть сломан, не будучи тронутым. Что я?</td>
+                <td class="hidden">Обещание</td>
+            </tr>
+            <tr>
+                <td>Я высокий, когда я молод, и короткий, когда я стар. Что я?</td>
+                <td class="hidden">Свеча</td>
+            </tr>
+            <tr>
+                <td>Я могу говорить на всех языках, но у меня нет голоса. Что я?</td>
+                <td class="hidden">Эхо</td>
+            </tr>
+            <tr>
+                <td>У меня есть шея, но нет головы. Что я?</td>
+                <td class="hidden">Бутылка</td>
+            </tr>
+            <tr>
+                <td>Что можно поймать, но нельзя бросить?</td>
+                <td class="hidden">Простуда</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tableCells = document.querySelectorAll('td:nth-child(2)');
+            const resetButton = document.getElementById('reset-button');
+
+            tableCells.forEach(cell => {
+                cell.addEventListener('click', () => {
+                    // Если текст уже виден, ничего не делаем
+                    if (cell.classList.contains('visible')) {
+                        return;
+                    }
+
+                    // Показываем текст и помечаем ячейку как просмотренную
+                    cell.classList.add('visible');
+                    cell.classList.add('seen');
+
+                    // Скрываем текст через 2 секунды
+                    setTimeout(() => {
+                        cell.classList.remove('visible');
+                    }, 2000);
+                });
+            });
+
+            // Обработчик для кнопки сброса
+            resetButton.addEventListener('click', () => {
+                const seenCells = document.querySelectorAll('.seen');
+                seenCells.forEach(cell => {
+                    cell.classList.remove('seen');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
