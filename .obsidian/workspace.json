@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "I Грамматика/3. Глаголы/1. Настоящее время.md",
+                "file": "I Грамматика/1. Существительное/1. Падежи.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1. Настоящее время"
+              "title": "1. Падежи"
             }
           }
         ]
@@ -44,7 +44,7 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "Файловый менеджер"
             }
           },
           {
@@ -160,16 +160,17 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "switcher:Меню быстрого перехода": false,
+      "graph:Граф": false,
+      "canvas:Создать новый холст": false,
+      "daily-notes:Сегодняшняя заметка": false,
+      "templates:Вставить шаблон": false,
+      "command-palette:Открыть палитру команд": false
     }
   },
   "active": "29e382f66f248654",
   "lastOpenFiles": [
+    "I Грамматика/3. Глаголы/1. Настоящее время.md",
     "index.md",
     "index.js.md",
     "I Грамматика/3. Глаголы/4. Смешанная практика.md",
@@ -185,7 +186,6 @@
     "I Грамматика/3. Глаголы/5. Виды глагола.md",
     "I Грамматика/3. Глаголы/3. Будущее время.md",
     "I Грамматика/3. Глаголы/2. Прошедшее время.md",
-    "I Грамматика/3. Глаголы/1. Настоящее время.md",
     "I Грамматика/2. Прилагательные/2. Степени сравнения.md",
     "I Грамматика/2. Прилагательные/1. Склонение прилагательных во всех падежах, числах и родах.md",
     "I Грамматика/1. Существительное/6. Склонение основных и нерегулярных существительных.md",
